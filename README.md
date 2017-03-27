@@ -8,4 +8,4 @@
  * [第一期]：[钟庆](https://github.com/richardissuperman) 分享议题 [Reactive Programming](https://github.com/richardissuperman/sy0901/tree/master/%E9%92%9F%E5%BA%86-Reactive%20Programming)
 
 
-我们的基本做法是，每一个分享自己单独创建文件夹，并且用markdown语法把项目的readme文件更新。文章最好用github的readme文件格式搭配markdown语法显示。
+我们的基本做法是，每一个分享，请自己单独创建文件夹，名字以姓名+分享议题的格式，每个文章命名README.md,同时附上一个QA.md的文件作为问答环节的文件。每个星期一位同学在周日之前更新好自己的文章，其余同学可以在QA上面提问，工作日作者对问题给予回答。
