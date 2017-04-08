@@ -93,12 +93,90 @@
 *********
 
 ### 问题2
->回答:答案
 
+庆哥，goooooood！！！
+我对reactive programming不是很了解，不过看了庆哥的分享觉得这个响应式编程非常赞，和云计算里task组件功能非常相似。
+我这里有个问题：庆哥举的reactive 的链式处理都是本地数据处理的例子，那如果放在分布式场景里，该怎么处理？比如说，咱们链式处理的某一环不是简单的对上一个函数的输出结果进行处理，而是需要拿着上一个函数的数据结果去请求其他服务，而这个请求又是异步的，这里就可能涉及异步回调的问题，对于这种场景reactive programming是否有比较好的处理架构？
+
+实际开发过程中没用过reactive programming，所以我也是突发奇想，如果问的不专业，请谅解 ：）
+>回答:
+仔仔的问题非常好，也是我们在安卓主要应用的一个点。实际上在我们公司的安卓应用中，使用RxJava或者Reactive Programming的最主要原因，就是RxJava对Observable的合并，规约的操作的支持。我们可以把一个Observable想象成一个Task，一个任务。那么不同的Task/Observable之间可能存在依赖，比如我们看下图：
+
+![依赖](https://github.com/richardissuperman/WHUT_CS_CLASS_09/blob/master/%E9%92%9F%E5%BA%86-Reactive%20Programming/images/Screen%20Shot%202017-04-08%20at%2010.29.29%20pm.png)
+
+上图诠释了一个应用场景，我们的程序需要调用四个API，四个HTTP call，并且每一个API的调用的参数都是从上一个API得来。这里就涉及到嵌套调用（嵌套回调），也就是说我们传统的异步编程里面的所说的Nested Callback，一层跌一层。这才安卓里面也经常出现，比如说，通过user id，得到user的信息，通过user的信息再获取user观看视频的历史等等。。。
+
+一般的做法就是使用嵌套回调，程序一般会看起来像这样：
+
+![嵌套](https://github.com/richardissuperman/WHUT_CS_CLASS_09/blob/master/%E9%92%9F%E5%BA%86-Reactive%20Programming/images/Screen%20Shot%202017-04-08%20at%2010.39.03%20pm.png)
+
+这样的写法，如果嵌套多几层会很难看，而且很难修改，用一个术语描述就是
+>Call Back Hell
+
+![call back hell](http://icompile.eladkarako.com/wp-content/uploads/2016/01/icompile.eladkarako.com_callback_hell.gif)
+
+在RxJava中，我们可以使用[concatMap()](http://reactivex.io/documentation/operators/concat.html)或者[flatmap()](http://reactivex.io/documentation/operators/flatmap.html)来解决这个问题。
+
+比如说，我们可以把HTTP API call重新写成同步的方法(比如说在Java里面是HttpUrlConnection.java提供同步的HTTP连接)。
+
+```java
+ Observable.create(new Observable.OnSubscribe<Object>() {
+            @Override
+            public void call(Subscriber<? super String> subscriber) {
+                HttpURLConnection connection =......
+                //这里省去初始化HttpConnection的步骤
+                connection.connect();
+                Byte[] result = new Byte[128];
+                connection.getInputStream().read(result);
+                return result.toString();
+            }
+        })
+                //API call 2
+                .concatMap(new Func1<String, Observable<String>>() {
+
+                    @Override
+                    public Observable<String> call(String response) {
+                        //这里的response就是第一步的API call的结果
+                        return Observable.create(new Observable.OnSubscribe<Object>() {
+                            @Override
+                            public void call(Subscriber<? super String> subscriber) {
+                                HttpURLConnection connection =......
+                                //这里省去初始化HttpConnection的步骤
+                                connection.connect();
+                                Byte[] result = new Byte[128];
+                                connection.getInputStream().read(result);
+                                return result.toString();
+                            }
+                        })
+                    }
+                })
+                //API call 3
+                .concatMap(new Func1<String, Observable<String>>() {
+
+                    @Override
+                    public Observable<String> call(String response) {
+                        //这里的response就是第二步的API call的结果
+                        return Observable.create(new Observable.OnSubscribe<Object>() {
+                            @Override
+                            public void call(Subscriber<? super String> subscriber) {
+                                HttpURLConnection connection =......
+                                //这里省去初始化HttpConnection的步骤
+                                connection.connect();
+                                Byte[] result = new Byte[128];
+                                connection.getInputStream().read(result);
+                                return result.toString();
+                            }
+                        })
+                    }
+                })
+```
+
+可能看起来有点复杂，但是仔细观察这其中的链式调用你会发现，你可以很轻松的把三个不同的，彼此依赖的API call通过concatMap()连接起来，这样可读性大大增加，而且最关键的是，非常非常的易于修改，比如你想修改依赖的顺序，或者删除依赖，很容易定位代码行，而不是像传统的做法，一层层嵌套去找。同时，使用concatMap或者flatmap不需要担心线程的问题，concatMap只有当上一层的任务完成之后，才会调用下一层task，也就是说不论这两个任务是不是运行在同一个线程，下层的任务只有在上一层执行结束才会开始。
+
+关于RxJava对着方面的支持还有很多，比如有操作符zip()可以把不通API call的结果融合起来组成新的对象，或者merge()让不同的Task全部完成时发出通知。美国非常有名的公司Netflix（就是纸牌屋的那个电视剧的公司）的Head engineer 在一次大会中分享了他们在不同的micro service中是怎么应用RxJava，把不同微服务的API call的结果整合的，感兴趣的可以参考一下他们的视频。。。需要翻墙:
+
+[![IMAGE ALT TEXT HERE](https://i.ytimg.com/vi/_t06LRX0DV0/hqdefault.jpg?custom=true&w=336&h=188&stc=true&jpg444=true&jpgq=90&sp=68&sigh=uXUEnUvmA6tvgMhEwEBAUgCxD-E)](https://www.youtube.com/watch?v=_t06LRX0DV0)
 
 
 
 *********
-
-
-
