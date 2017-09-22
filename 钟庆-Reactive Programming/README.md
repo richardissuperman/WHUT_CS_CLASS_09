@@ -64,6 +64,11 @@ Leetcode刷题总结
 
 [Number of Longest Increasing Subsequence](https://leetcode.com/problems/number-of-longest-increasing-subsequence/description/)
 
+[ Target Sum](https://leetcode.com/problems/target-sum/description/)
+
+
+[Wildcard Matching](https://leetcode.com/problems/wildcard-matching/description/)
+
 ### Tree
 
 [Serialize and Deserialize Binary Tree](https://leetcode.com/problems/serialize-and-deserialize-binary-tree/description/)
@@ -112,7 +117,6 @@ Leetcode刷题总结
 
 [Clone Graph](https://leetcode.com/problems/clone-graph/)
 
-[ Target Sum](https://leetcode.com/problems/target-sum/description/)
 
 [Walls and Gates](https://leetcode.com/problems/walls-and-gates/description/)
 
@@ -124,13 +128,14 @@ Leetcode刷题总结
 
 [Course Schedule II](https://leetcode.com/problems/course-schedule-ii/description/)
 
-[Graph Valid Tree](https://leetcode.com/problems/graph-valid-tree/description/)
 
 ### Union Find
 
 [Number of Islands](https://leetcode.com/problems/number-of-islands/description/)
 
 [Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/description/)
+
+[Graph Valid Tree](https://leetcode.com/problems/graph-valid-tree/description/)
 
 ### BackTracking
 
@@ -140,7 +145,7 @@ Leetcode刷题总结
 
 [Subsets II](https://leetcode.com/problems/subsets-ii/description/)
 
-[Wildcard Matching](https://leetcode.com/problems/wildcard-matching/description/)
+
 
 
 [Word Search](https://leetcode.com/problems/word-search/description/)
