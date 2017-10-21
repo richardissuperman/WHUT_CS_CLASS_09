@@ -127,6 +127,7 @@ Leetcode刷题总结
 
 [Equal Tree Partition](https://leetcode.com/problems/equal-tree-partition/description/)
 
+[Most Frequent Subtree Sum](https://leetcode.com/problems/most-frequent-subtree-sum/description/)
 
 ### DFS/BFS
 
