@@ -13,6 +13,8 @@ Leetcode刷题总结
 
 [Design Search Autocomplete System](https://leetcode.com/problems/design-search-autocomplete-system/description/)
 
+[LFU Cache](https://leetcode.com/problems/lfu-cache/description/)
+
 ### Two Pointer
 
 [Move Zeroes](https://leetcode.com/problems/move-zeroes/description/)
@@ -42,6 +44,10 @@ Leetcode刷题总结
 [Palindrome Linked List](https://leetcode.com/problems/palindrome-linked-list/description/)
 
 [ Valid Palindrome II](https://leetcode.com/problems/valid-palindrome-ii/description/)
+
+[Add Two Numbers](https://leetcode.com/problems/add-two-numbers/description/)
+
+[Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/description/)
 ### Dynamic Programming
 
 [Decode Ways](https://leetcode.com/problems/decode-ways/description/)
@@ -69,6 +75,10 @@ Leetcode刷题总结
 
 
 [Wildcard Matching](https://leetcode.com/problems/wildcard-matching/description/)
+
+[Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/description/)
+
+[Maximum Length of Pair Chain](https://leetcode.com/problems/maximum-length-of-pair-chain/description/)
 
 ### Tree
 
@@ -104,6 +114,16 @@ Leetcode刷题总结
 [Subtree of Another Tree](https://leetcode.com/problems/subtree-of-another-tree/description/)
 
 [Two Sum IV - Input is a BST](https://leetcode.com/problems/two-sum-iv-input-is-a-bst/description/)
+
+[Boundary of Binary Tree](https://leetcode.com/problems/boundary-of-binary-tree/description/)
+
+[Merge Two Binary Trees](https://leetcode.com/problems/merge-two-binary-trees/description/)
+
+[Construct Binary Tree from String](https://leetcode.com/problems/construct-binary-tree-from-string/description/)
+
+[Construct String from Binary Tree](https://leetcode.com/problems/construct-string-from-binary-tree/description/)
+
+
 ### DFS/BFS
 
 [Remove Invalid Parentheses](https://leetcode.com/problems/remove-invalid-parentheses/description/)
@@ -129,6 +149,13 @@ Leetcode刷题总结
 
 [Course Schedule II](https://leetcode.com/problems/course-schedule-ii/description/)
 
+[Cut Off Trees for Golf Event](https://leetcode.com/problems/cut-off-trees-for-golf-event/description/)
+
+[Minesweeper](https://leetcode.com/problems/minesweeper/description/)
+
+[Convert BST to Greater Tree](https://leetcode.com/problems/convert-bst-to-greater-tree/description/)
+
+[Binary Tree Right Side View](https://leetcode.com/problems/binary-tree-right-side-view/description/)
 
 ### Union Find
 
@@ -160,6 +187,8 @@ Leetcode刷题总结
 
 [Sqrt(x)](https://leetcode.com/problems/sqrtx/description/)
 
+[Search a 2D Matrix](https://leetcode.com/problems/search-a-2d-matrix-ii/description/)
+
 ### String 操作
 
 [Integer to English Words](https://leetcode.com/problems/integer-to-english-words/description/)
@@ -174,6 +203,12 @@ Leetcode刷题总结
 [Brick Wall](https://leetcode.com/problems/brick-wall/description/)
 
 [Contiguous Array](https://leetcode.com/problems/contiguous-array/description/)
+
+[Find All Anagrams in a String](https://leetcode.com/problems/find-all-anagrams-in-a-string/description/)
+
+[Copy List with Random Pointer](https://leetcode.com/problems/copy-list-with-random-pointer/description/)
+
+[Valid Anagram](https://leetcode.com/problems/valid-anagram/description/)
 
 
 ### Bit操作
@@ -210,12 +245,30 @@ Leetcode刷题总结
 
 [ H-Index](https://leetcode.com/problems/h-index/description/)
 
+[Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/description/)
+
+[Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/description/)
+
+[Trapping Rain Water II](https://leetcode.com/problems/trapping-rain-water-ii/description/)
+
+[Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/description/)
+
+[Third Maximum Number](https://leetcode.com/problems/third-maximum-number/description/)
+
+[Sort Characters By Frequency](https://leetcode.com/problems/sort-characters-by-frequency/description/)
+
+[Top K Frequent Words](https://leetcode.com/problems/top-k-frequent-words/description/)
+
 ### Stack
 [ Exclusive Time of Functions](https://leetcode.com/problems/exclusive-time-of-functions/)
 
 [Simplify Path](https://leetcode.com/problems/simplify-path/description/)
 
 [Valid Parentheses](https://leetcode.com/problems/valid-parentheses/description/)
+
+[Min Stack](https://leetcode.com/problems/min-stack/description/)
+
+[Baseball Game](https://leetcode.com/problems/baseball-game/description/)
 
 
 ## Other
@@ -229,6 +282,33 @@ Leetcode刷题总结
 [Longest Continuous Increasing Subsequence](https://leetcode.com/problems/longest-continuous-increasing-subsequence/description/)
 
 [Excel Sheet Column Title](https://leetcode.com/problems/excel-sheet-column-title/description/)
+
+[Rotate Image](https://leetcode.com/problems/rotate-image/description/)
+
+[Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/description/)
+
+
+[ Super Washing Machines](https://leetcode.com/problems/super-washing-machines/description/)
+
+[Reverse Words in a String II](https://leetcode.com/problems/reverse-words-in-a-string-ii/description/)
+
+[Rotate Array](https://leetcode.com/problems/rotate-array/description/)
+
+[Set Matrix Zeroes](https://leetcode.com/problems/set-matrix-zeroes/description/)
+
+[Count Primes](https://leetcode.com/problems/count-primes/description/)
+
+[String to Integer ](https://leetcode.com/problems/string-to-integer-atoi/description/)
+
+[Gray Code](https://leetcode.com/problems/gray-code/description/)
+
+[Pascal's Triangle II](https://leetcode.com/problems/pascals-triangle-ii/description/)
+
+[Optimal Division](https://leetcode.com/problems/optimal-division/description/)
+
+[Rotate Function](https://leetcode.com/problems/rotate-function/description/)
+
+[Repeated Substring Pattern](https://leetcode.com/problems/repeated-substring-pattern/description/)
 
 ### 疑难杂症
 
