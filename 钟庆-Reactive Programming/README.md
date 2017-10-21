@@ -80,6 +80,8 @@ Leetcode刷题总结
 
 [Maximum Length of Pair Chain](https://leetcode.com/problems/maximum-length-of-pair-chain/description/)
 
+[Longest Palindromic Subsequence](https://leetcode.com/problems/longest-palindromic-subsequence/description/)
+
 ### Tree
 
 [Serialize and Deserialize Binary Tree](https://leetcode.com/problems/serialize-and-deserialize-binary-tree/description/)
@@ -122,6 +124,8 @@ Leetcode刷题总结
 [Construct Binary Tree from String](https://leetcode.com/problems/construct-binary-tree-from-string/description/)
 
 [Construct String from Binary Tree](https://leetcode.com/problems/construct-string-from-binary-tree/description/)
+
+[Equal Tree Partition](https://leetcode.com/problems/equal-tree-partition/description/)
 
 
 ### DFS/BFS
@@ -209,6 +213,8 @@ Leetcode刷题总结
 [Copy List with Random Pointer](https://leetcode.com/problems/copy-list-with-random-pointer/description/)
 
 [Valid Anagram](https://leetcode.com/problems/valid-anagram/description/)
+
+[K-diff Pairs in an Array](https://leetcode.com/problems/k-diff-pairs-in-an-array/description/)
 
 
 ### Bit操作
@@ -309,6 +315,8 @@ Leetcode刷题总结
 [Rotate Function](https://leetcode.com/problems/rotate-function/description/)
 
 [Repeated Substring Pattern](https://leetcode.com/problems/repeated-substring-pattern/description/)
+
+[Solve the Equation](https://leetcode.com/problems/solve-the-equation/description/)
 
 ### 疑难杂症
 
