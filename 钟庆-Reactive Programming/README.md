@@ -129,6 +129,9 @@ Leetcode刷题总结
 
 [Most Frequent Subtree Sum](https://leetcode.com/problems/most-frequent-subtree-sum/description/)
 
+[Maximum Width of Binary Tree](https://leetcode.com/problems/maximum-width-of-binary-tree/description/)
+>这题和算水平距离的那题不一样的地方是，水平距离重叠的部分算是一列，所以可以下一行的node的id可以用lastvalue+1/lastvalue-1,这里必须要用2*lastvalue/2*lastvalue+1.
+
 ### DFS/BFS
 
 [Remove Invalid Parentheses](https://leetcode.com/problems/remove-invalid-parentheses/description/)
@@ -178,10 +181,8 @@ Leetcode刷题总结
 
 [Subsets II](https://leetcode.com/problems/subsets-ii/description/)
 
-
-
-
 [Word Search](https://leetcode.com/problems/word-search/description/)
+
 ### Binary Search
 
 [First Bad Version](https://leetcode.com/problems/first-bad-version/description/)
