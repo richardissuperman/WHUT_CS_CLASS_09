@@ -15,6 +15,8 @@ Leetcode刷题总结
 
 [LFU Cache](https://leetcode.com/problems/lfu-cache/description/)
 
+[Design Twitter](https://leetcode.com/problems/design-twitter/description/)
+
 ### Two Pointer
 
 [Move Zeroes](https://leetcode.com/problems/move-zeroes/description/)
