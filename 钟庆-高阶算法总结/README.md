@@ -191,7 +191,7 @@ for(int i = 0;i< nums[i];i++){
 
 ```
 
-* 需要用HashMap/HashSet记录后端信息从而更新状态的题目
+* 3.需要用HashMap/HashSet记录后端信息从而更新状态的题目
 * [Longest Substring Without Repeating Characters](http://www.lintcode.com/en/problem/longest-substring-without-repeating-characters/)
 * [Find All Anagrams in a String](https://leetcode.com/problems/group-anagrams/description/)
 * [Minimum Window Substring](http://lintcode.com/en/problem/minimum-window-substring/)
@@ -225,3 +225,24 @@ for(int i = 0;i< nums[i];i++){
 		return res;
 	}
 ```
+
+然后Find All Anagrams in a String 和Minimum Window Substring其实是一模一样的题目,只不过anagram就是一个限定了长度的minimum window substring而已，这里每次做比较的时候，其实比较的是两个hashmap，如果我们移动窗口的hashmap包含了目标的hashmap，比如：
+
+>我们要查找"abc"(a->1,b->1,c->1),但是target是"abac"(a->2,b->1,c->1)，那么就是符合标准的。因为target hashmap每一个entry，source都有，而且大于等于其数量，以为这该窗口包含了target string。
+>比较的时候可以不需要用hashmap，可以用数组
+
+```java
+ boolean valid(int []sourcehash, int []targethash) {
+        
+        for(int i = 0; i < 256; i++) {
+            if(targethash[i] > sourcehash[i])    
+                return false;
+        }
+        return true;
+    }
+
+```
+
+优化的做法:
+可以不需要用hashmap或者数组遍历，可以使用counter解决：
+
