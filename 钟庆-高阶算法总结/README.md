@@ -96,6 +96,12 @@ public void search(String word){
 
 * 1.[ Implement Trie (Prefix Tree)](https://leetcode.com/problems/implement-trie-prefix-tree/description/)
 
+***********
+
+
+# 高阶算法总结(双指针篇)
+
+
 
 ### 求第K大问题，快速选择(Quick Select)
 
@@ -128,3 +134,94 @@ public int partition(int[] nums){
 ```
 
 该代码确定了partition的范围为全局，其实我们在方法的签名中可以限定partition的范围，这样可以用于接下来的操作，比如快速排序等等。有了这个**partition**方法,我们可以轻松的求解第K大问题。
+
+
+### Sliding window 问题
+
+>Sliding window问题一般是在一个数组或者集合里面，通过维护一个一定大小（或者不确定的大小）的的窗口，计算在该窗口内的一些情况，比如说合，或者最小值，或者最最大值，或者中位数等等。这种题目一般分三种做法。
+
+* 1.双指针类型
+* [Minimum Size Subarray Sum](https://leetcode.com/problems/minimum-size-subarray-sum/description/) 求移动窗口内的和，满足大于或者小于一个数K。
+
+可以用该模板代码求解
+
+```java
+//用这个for+while型模板会好写一些。
+for(int i = 0;i < nums.length ;i++){
+	int j = 0;
+    while(j<nums.length){
+    	j++;
+        if(满足条件){
+        	//如果满足一些情况的话，比如和大于或者小于某个值
+        }
+        else{
+        	break;
+        }
+    }
+}
+
+```
+
+* 2.用PriorityQueue解决
+* [Sliding Window Median](https://leetcode.com/problems/sliding-window-median/description/)
+* [Find Median from Data Stream](https://leetcode.com/problems/find-median-from-data-stream/description/)
+
+>维护一个K大小的窗口，其实是两个PriorityQueue(一个最大堆一个最小堆)加一个中位数，每次新加入一个数nums[i],先检查一下看应该放入哪边的PriorityQueue，然后更新中位数。
+
+```java
+//larger是一个最小堆，也就是正常的序列。
+PriorityQueue larger = ....;
+//smaller是最大堆，也就是反向的序列。因为每次我都需要比较larger里面最小和smaller里面最大，因为他们最靠近mid
+PriorityQueue smaller = ....;
+
+//实际情况其实更复杂。。。这里随便写写
+for(int i = 0;i< nums[i];i++){
+	//要先把最后一个数移除，这里操作也是logK
+    larger/smaller.remove(nums[i-k]);
+	if(nums[i]>mid){
+    	mid = nums[i];
+        //这里操作也是logK
+        smaller.add(mid);
+    }else{
+    	//这里操作也是logK
+    	larger.add(mid);
+        mid = nums[i];
+    }
+}
+
+```
+
+* 需要用HashMap/HashSet记录后端信息从而更新状态的题目
+* [Longest Substring Without Repeating Characters](http://www.lintcode.com/en/problem/longest-substring-without-repeating-characters/)
+* [Find All Anagrams in a String](https://leetcode.com/problems/group-anagrams/description/)
+* [Minimum Window Substring](http://lintcode.com/en/problem/minimum-window-substring/)
+
+```java
+//结合双指针的for循环加while loop，加上HashSet
+ public int lengthOfLongestSubstring(String s) {
+		// write your code here
+		if(s == null || s.length() == 0) {
+			return 0;
+		}
+		char chars[]  = s.toCharArray();
+		HashSet<Character> set = new HashSet<>();
+		int res = Integer.MIN_VALUE;
+		int j = 0;
+		for(int i = 0; i< chars.length ;i++) {
+			while(j<chars.length) {
+				if(!set.contains(chars[j])) {
+					set.add(chars[j]);
+					if(j-i+1>res) {
+						res = j-i+1;
+					}
+					j++;
+				}
+				else {
+					break;
+				}
+			}
+			set.remove(chars[i]);
+		}
+		return res;
+	}
+```
