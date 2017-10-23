@@ -96,3 +96,35 @@ public void search(String word){
 
 * 1.[ Implement Trie (Prefix Tree)](https://leetcode.com/problems/implement-trie-prefix-tree/description/)
 
+
+### 求第K大问题，快速选择(Quick Select)
+
+>快速选择用于求第K大的问题，可以用于求中位数。使用快速排序quick select的partition思想，每次把数组分割成两堆从而求解。Partition的代码是关键，如何在数组中进行分割，交换是代码的核心部分。
+
+```java
+public int partition(int[] nums){
+    //使用第一个数字作为pivot点，可以使用随机算法选择，这样效果更好
+	int pivot = nums[0];
+    int start = 0;
+    int end = nums.length-1;
+    //开始分割
+    //跳过所有大于pivot的点，找到从右向左第一个比pivot小的数字
+    
+    while(start<end){
+    	while(start<end && nums[end]>=pivot){
+    		end--;
+    	}
+    	nums[start] = nums[end];
+    
+    	while(start<end && nums[start]<=pivot){
+    		start++;
+    	}
+    	nums[end] = nums[start];
+    }
+    nums[start] = pivot
+    return start;
+}
+
+```
+
+该代码确定了partition的范围为全局，其实我们在方法的签名中可以限定partition的范围，这样可以用于接下来的操作，比如快速排序等等。有了这个**partition**方法,我们可以轻松的求解第K大问题。
