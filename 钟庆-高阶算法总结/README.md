@@ -246,3 +246,96 @@ for(int i = 0;i< nums[i];i++){
 优化的做法:
 可以不需要用hashmap或者数组遍历，可以使用counter解决：
 
+
+
+
+### 动态规划问题
+
+简单类型的动态规划，属于典型的前者的状态决定后者的状态，当前的state(往往是什么最大值最小值之类的)state[i]，可以是由state[i-1]-----state[0]决定的，所以一般这种算法最差也是O(n^2).
+
+>例题1.house robber，每次不能偷相邻的
+>状态转移方程为：
+
+```java
+//每次需要比较前一个和前两个加当前值(模拟只偷不相邻这个过程)
+f[i] = max(f[i-1], f[i-2] + A[i-1]);
+```
+
+>例题2.编辑距离
+>两个数字的编辑距离也是动态规划，可以用正序动态规划来做。
+
+
+
+![](http://www.dreamxu.com/books/dsa/dp/images/2014-11-05_133201.svg)
+
+
+第二种类型是记忆化搜索动态规划，这类动态规划需要配合深度优先或者广度优先，（一般是对一个地图，例如二维数组进行搜索），然后通过另一个数组进行记录。
+
+>例题3 [ Longest Increasing continuous Subsequence ](https://aaronice.gitbooks.io/lintcode/content/dynamic_programming/longest_increasing_continuous_subsequence_ii.html)
+
+
+需要通过记录已经走过的路径的最大值。保存在hashmap或者一个数组里面
+
+
+
+
+    public int longestIncreasingContinuousSubsequenceII(int[][] A) {
+        if (A == null || A.length == 0 || A[0].length == 0) {
+            return 0;
+        }
+        M = A.length;
+        N = A[0].length;
+        dp = new int[M][N];
+        flag = new int[M][N];
+
+        int ans = 0;
+
+        for (int i = 0; i < M; i++) {
+            for (int j = 0; j < N; j++) {
+                dp[i][j] = search(i, j, A);
+                ans = Math.max(ans, dp[i][j]);
+            }
+        }
+
+        return ans;
+    }
+
+    // Memorized search, recursive
+    public int search(int x, int y, int[][] A) {
+    
+		//这里是关键
+        if (flag[x][y] != 0) {
+            return dp[x][y];
+        }
+
+        int ans = 1; // Initialize dp[x][y] = 1 if it's local min compare to 4 directions
+        int nx, ny;
+        for (int i = 0; i < dx.length; i++) {
+            nx = x + dx[i];
+            ny = y + dy[i];
+            if (insideBoundary(nx, ny) && (A[x][y] > A[nx][ny])) {
+                ans = Math.max(ans, search(nx, ny, A) + 1);
+            }
+        }
+
+        flag[x][y] = 1;
+        dp[x][y] = ans;
+
+        return ans;
+    }
+
+    public boolean insideBoundary(int x, int y) {
+        return (x >=0 && x < M && y >= 0 && y < N);
+    }
+}
+
+
+```
+
+
+
+
+
+
+
+
