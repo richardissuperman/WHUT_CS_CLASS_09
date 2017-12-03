@@ -150,6 +150,7 @@ Leetcode刷题总结
 
 
 [Walls and Gates](https://leetcode.com/problems/walls-and-gates/description/)
+>像这种多点BFS，就是多点更新距离的BFS，就直接把终点放进队列里面，每次更新相邻节点的距离值就好（更新的值一定是最优的），不需要每一个终点扩散做bfs，或者每个空点向终点做BFS，因为这样涉及值的更新(可能和另一个节点比距离更小，要更新)。
 
 [Increasing Triplet Subsequence](https://leetcode.com/problems/increasing-triplet-subsequence/description/)
 
