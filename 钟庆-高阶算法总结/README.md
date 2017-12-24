@@ -1,3 +1,154 @@
+
+今年可谓是跌宕起伏的一年，幸好结局还算是圆满。开年的时候由于和公司CTO有过节，被"打入冷宫"，到下半年开始找工作，过程还是蛮艰辛。先分享一下offer的情况
+
+
+国内的有
+>1.阿里口碑(offer)
+>
+>2.Wish(offer)
+>
+>3.Booking(Offer)
+>
+>4.今日头条(Offer)
+>
+>5.Airbnb(北京)被拒
+
+最让我开心的是拿到了硅谷的offer！
+
+>FaceBook Menlo Park总部的offer
+>
+>Amazon 西雅图总部 offer
+
+
+在面试的过程中我深深的感受到，对于一个优秀的安卓开发来说，首先摆在第一位的还是他/她作为一个软件工程师的基本素养。无论你是做前端还是后端，最后定义你的优秀程度的还是作为软件工程师的基本素养，学习能力和编程能力，还有设计能力。我自己在现在的公司也做过面试官，发现新加坡的大部分码农(东南亚的码农)，对基础的编程能力实在是有所欠缺，熟练的使用API却不能理解为什么。
+
+![](http://mmbiz.qpic.cn/mmemoticon/DhduwiaBa7lc7Ce8EBOGnFLkxgcvG88gsEjA990rfxViaLNIHOaFFCw7lCo5IfkVq4rWUibTwWZJ9k/0)
+
+很多同学会在长久以往的业务逻辑开发中慢慢迷失，逐渐的把写代码变成了一种习惯，而没有再去思考自己代码的优化，结构的调整。这个现象不止是安卓开发的小伙伴有，任何大公司的朋友都会遇到。所以我这一系列的文章打算深入的讲解一下对于安卓程序员面试中可能遇到的算法。也希望能培养大家多思考，业余时间多动手写好代码，优质代码的习惯。
+
+******************
+
+那么第一篇我打算着重讲一下广度优先搜索和深度优先搜索。
+
+### 1.深度优先搜索
+
+
+
+
+![s](http://omu7tit09.bkt.clouddn.com/15006043873870.jpg)
+
+相信大家以前在学习算法与数据结构的时候都遇到过。比如说，打印二叉树前序，中序，后序的字符串这种问题。一般来说我们会选择使用递归的形式来打印，比如说
+
+```java
+/**
+** 二叉树节点
+**/
+public class TreeNode{
+
+	TreeNode left;
+    TreeNode Right;
+    int value;
+}
+
+
+//中序
+public void printInoderTree(TreeNode root){
+	//base case
+	if(root == null){
+    	return;
+    }
+    //递归调用printTree
+    printTree(root.left);
+    System.out.println(root.val);
+    printTree(root.right);
+
+}
+
+
+//中序
+public void printPreoderTree(TreeNode root){
+	//base case
+	if(root == null){
+    	return;
+    }
+    //递归调用printTree
+    System.out.println(root.val);
+    printTree(root.left);
+    printTree(root.right);
+
+}
+
+```
+
+一开始上学的时候，我这几段代码都是背下来的，完全没有理解其中的奥妙。对于二叉树的递归操作，其实正确的理解方式
+
+> *  **把每次递归想象成对其子集(左右子树)的一个操作，假设该递归已经可以处理好左右子树，那么根据已经处理好的左右子树在调整根节点。**
+
+这样的思想其实和分而治之 **分治法** 相似，就是把一个大问题先分成小问题，再去解决。我们还是以二叉树的中序打印为例子。
+
+
+>因为中序打印我们需要以左中右的顺序打印二叉树，以下图为例子我们分解一下问题。
+
+![](https://github.com/richardissuperman/WHUT_CS_CLASS_09/blob/master/%E9%92%9F%E5%BA%86-%E9%AB%98%E9%98%B6%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/images/inorder_hightlights.gif?raw=true)
+
+
+
+上面这个gif详细的解释了怎么叫分而治之，首先，我们假设A节点的左右子树分开而且已经打印完毕，那么只剩下A节点需要单独处理，那么久打印它。对于B子树来说，我们以同样的思维处理。所以动图里面是B子树先铺平，然后轮到A节点，最后到C子树。
+
+最后我们需要考虑一下这个递归的结束条件。我们假设A节点左右子树都为空，null,那么在调用该方法的时候我们需要在Node为空的时候直接返回不做任何操作。该条件我们一般称为递归的**Base Case**。每个递归都是这样，先想好我们怎么把问题``分治``， 再考虑``base case``是哪些，怎么处理，我们的递归就结束了。
+
+>问题来了，我们明明要讲深度优先，为什么讲起递归了。两者的联系是什么？
+
+其实递归对于很多数据结构来说，就是深度优先，比如二叉树，图。因为在递归的过程中，我们就是在一层一层的往下走，比如对于二叉树的中序打印来说，我们递归树的左节点，除非左节点为空，我们会一直往下走，这本身就是**深度优先**了。所以``一般来说``，对于深度优先，我们都会用递归来解决，因为写起来最方便。当然我们深度优先如果不想用递归，还可以使用``栈(Stack)``来解决，我们放在文章的最后来讲。
+
+*************
+
+
+好！相信我已经勾起了大家对大学算法课的记忆了！那么我们来巩固一下。使用分治思想+递归，我们就已经可以解决大部分二叉树的问题了。 我们来看一道题目->
+
+### 1.2 翻转二叉树
+
+这道题是一个经典的题目，Mac上著名软件[HomeBrew](https://brew.sh/)的作者曾经在面试Google的时候被问到了，还没做出来，因此最后被拒。。。。于是他在个人推特上保佑到:
+
+>Google: 90% of our engineers use the software you wrote (Homebrew), but you can’t invert a binary tree on a whiteboard so fuck off.
+
+最后大家的关注点就慢慢从作者被拒本身转移到了题目上了。。。那我们看看这道题到底有多难。
+
+****
+翻转前
+
+![](https://github.com/richardissuperman/WHUT_CS_CLASS_09/blob/master/%E9%92%9F%E5%BA%86-%E9%AB%98%E9%98%B6%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/images/Screen%20Shot%202017-12-24%20at%202.46.39%20PM.png?raw=true)
+
+
+
+翻转后
+![](https://github.com/richardissuperman/WHUT_CS_CLASS_09/blob/master/%E9%92%9F%E5%BA%86-%E9%AB%98%E9%98%B6%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/images/Screen%20Shot%202017-12-24%20at%202.46.39%20PM.png?raw=true)
+
+
+看起来好像很麻烦的样子，每个子树本身都被翻转一遍。但是我们使用分治的思维，假如说我们有个函数，专门翻转二叉树的。假如我们把B子树翻转好，再把C子树翻转好，那么我们要做的岂不就是简单的把A节点的左赋给C(原来是B)，再把A节点的右赋给B(原来是C)。这个问题是不是就解决了？
+
+对于B和C我们可以用同样的分治思维去递归解决。
+
+
+![](https://github.com/richardissuperman/WHUT_CS_CLASS_09/blob/master/%E9%92%9F%E5%BA%86-%E9%AB%98%E9%98%B6%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/images/%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91.gif?raw=true)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # 高阶算法总结(数据结构篇)
 
 
