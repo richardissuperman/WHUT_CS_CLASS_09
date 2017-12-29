@@ -1,4 +1,6 @@
 
+
+
 今年可谓是跌宕起伏的一年，幸好结局还算是圆满。开年的时候由于和公司CTO有过节，被"打入冷宫"，到下半年开始找工作，过程还是蛮艰辛。先分享一下offer的情况
 
 
@@ -23,19 +25,17 @@
 在面试的过程中我深深的感受到，对于一个优秀的安卓开发来说，首先摆在第一位的还是他/她作为一个软件工程师的基本素养。无论你是做前端还是后端，最后定义你的优秀程度的还是作为软件工程师的基本素养，学习能力和编程能力，还有设计能力。我自己在现在的公司也做过面试官，发现新加坡的大部分码农(东南亚的码农)，对基础的编程能力实在是有所欠缺，熟练的使用API却不能理解为什么。
 
 ![](http://mmbiz.qpic.cn/mmemoticon/DhduwiaBa7lc7Ce8EBOGnFLkxgcvG88gsEjA990rfxViaLNIHOaFFCw7lCo5IfkVq4rWUibTwWZJ9k/0)
-
 很多同学会在长久以往的业务逻辑开发中慢慢迷失，逐渐的把写代码变成了一种习惯，而没有再去思考自己代码的优化，结构的调整。这个现象不止是安卓开发的小伙伴有，任何大公司的朋友都会遇到。所以我这一系列的文章打算深入的讲解一下对于安卓程序员面试中可能遇到的算法。也希望能培养大家多思考，业余时间多动手写好代码，优质代码的习惯。
 
 ******************
 
-那么第一篇我打算着重讲一下广度优先搜索和深度优先搜索。
+那么第一篇我打算着重讲一下二叉树的问题。
 
-### 1.深度优先搜索
-
-
+### 1.二叉树的递归（深度优先）处理
 
 
-![s](http://omu7tit09.bkt.clouddn.com/15006043873870.jpg)
+
+![s](http://upload-images.jianshu.io/upload_images/1777208-9c767c10de3c992e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 相信大家以前在学习算法与数据结构的时候都遇到过。比如说，打印二叉树前序，中序，后序的字符串这种问题。一般来说我们会选择使用递归的形式来打印，比如说
 
@@ -99,16 +99,16 @@ public void printPreoderTree(TreeNode root){
 
 >问题来了，我们明明要讲深度优先，为什么讲起递归了。两者的联系是什么？
 
-其实递归对于很多数据结构来说，就是深度优先，比如二叉树，图。因为在递归的过程中，我们就是在一层一层的往下走，比如对于二叉树的中序打印来说，我们递归树的左节点，除非左节点为空，我们会一直往下走，这本身就是**深度优先**了。所以``一般来说``，对于深度优先，我们都会用递归来解决，因为写起来最方便。当然我们深度优先如果不想用递归，还可以使用``栈(Stack)``来解决，我们放在文章的最后来讲。
+其实递归对于很多数据结构来说，就是深度优先，比如二叉树，图。因为在递归的过程中，我们就是在一层一层的往下走，比如对于二叉树的中序打印来说，我们递归树的左节点，除非左节点为空，我们会一直往下走，这本身就是**深度优先**了。所以``一般来说``，对于深度优先，我们都会用递归来解决，因为写起来最方便。当然我们深度优先如果不想用递归，还可以使用``栈(Stack)``来解决，我们在以后的文章来讲(不过大家需要知道的是，递归本身就是使用方法栈的一种操作，联想一下我们常常听到的StackOverFlow,你应该能明白其中的奥妙了吧)。
 
 *************
 
 
 好！相信我已经勾起了大家对大学算法课的记忆了！那么我们来巩固一下。使用分治思想+递归，我们就已经可以解决大部分二叉树的问题了。 我们来看一道题目->
 
-### 1.2 翻转二叉树
+### 1.1 翻转二叉树
 
-这道题是一个经典的题目，Mac上著名软件[HomeBrew](https://brew.sh/)的作者曾经在面试Google的时候被问到了，还没做出来，因此最后被拒。。。。于是他在个人推特上保佑到:
+这道题是一个经典的题目，Mac上著名软件[HomeBrew](https://brew.sh/)的作者曾经在面试Google的时候被问到了，还没做出来，因此最后被拒。。。。于是他在个人推特上抱怨到:
 
 >Google: 90% of our engineers use the software you wrote (Homebrew), but you can’t invert a binary tree on a whiteboard so fuck off.
 
@@ -127,14 +127,304 @@ public void printPreoderTree(TreeNode root){
 
 看起来好像很麻烦的样子，每个子树本身都被翻转一遍。但是我们使用分治的思维，假如说我们有个函数，专门翻转二叉树的。假如我们把B子树翻转好，再把C子树翻转好，那么我们要做的岂不就是简单的把A节点的左赋给C(原来是B)，再把A节点的右赋给B(原来是C)。这个问题是不是就解决了？
 
-对于B和C我们可以用同样的分治思维去递归解决。
-
 
 ![](https://github.com/richardissuperman/WHUT_CS_CLASS_09/blob/master/%E9%92%9F%E5%BA%86-%E9%AB%98%E9%98%B6%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/images/%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91.gif?raw=true)
 
+对于B和C我们可以用同样的分治思维去递归解决。用一段代码来描述一下
+
+
+```java
+public TreeNode reverseBinaryTree(TreeNode root){
+	//先处理base case，当root ==null 时，什么都不需要做,返回空指针
+    if(root == null){
+    	return null;
+    }
+    else{
+    	//把左子树翻转
+    	TreeNode left = reverseBinaryTree(root.left);
+        //把右子树翻转
+        TreeNode right = reverseBinaryTree(root.right);
+        //把左右子树分别赋值给root节点，但是是翻转过来的顺序
+        root.left = right;
+        root.right = left;
+        //返回根节点
+        return root;
+    }
+}
+
+```
+
+根据这个例子，再加上中序打印的题目，我们应该已经可以很轻松的理解到了，对于二叉树的题目或者算法，```分而治之``` 和 ```递归``` 的核心思想了，就是把左右子树分开处理，最后在把结果合并(把处理好的左右子树对应根节点进行处理)。
+
+那么接下来我们来一个复杂一点点的题目
+
+
+*******
+### 1.2 把二叉树铺平
+
+这个题目我们需要把一个二叉树变成一个类似于链表的结构，所有的子节点都移到右节点去，看图为例。
+
+![](https://github.com/richardissuperman/WHUT_CS_CLASS_09/blob/master/%E9%92%9F%E5%BA%86-%E9%AB%98%E9%98%B6%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/btree/Screen%20Shot%202017-12-29%20at%205.53.29%20PM.png?raw=true)
+
+转变之后
+
+![](https://github.com/richardissuperman/WHUT_CS_CLASS_09/blob/master/%E9%92%9F%E5%BA%86-%E9%AB%98%E9%98%B6%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/btree/Screen%20Shot%202017-12-29%20at%205.55.26%20PM.png?raw=true)
+
+从图中我们可以看出来，把二叉树铺平的这个过程，是先把**左子树铺平**，链接到根节点的右节点上面，再把**右子树铺平**,链接到已经铺平的左子树的最后一个节点上。最后返回根节点。那么我们从一个宏观的角度来说，需要做的就是先把左右子树铺平。
+
+假设我们有一个方法叫```flatten()```，它会把一个二叉树铺平最后返回根节点
+
+```java 
+public TreeNode flatten(TreeNode root){    
+}
+
+```
+
+那么从宏观的角度，我们对**铺平**这个操作，已经做完了！！！接下来就是第二步，还是以一个动画来阐述这个过程。
+
+![](https://github.com/richardissuperman/WHUT_CS_CLASS_09/blob/master/%E9%92%9F%E5%BA%86-%E9%AB%98%E9%98%B6%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/btree/flatten.gif?raw=true)
+
+最终代码如下，附上注释
+
+```java 
+public TreeNode flatten(TreeNode root){  
+	
+    //base case
+    if(root == null){
+    	return null;
+    }
+    else{
+    	//用递归的思想，把左右先铺平
+    	TreeNode left = flatten(root.left);
+        TreeNode right = flatten(root.right);
+        //把左指针和右指针先指向空。
+        root.left = null;
+        root.right = null;
+        //假如左子树生成的链表为空，那么忽略它，把右子树生成的链表指向根节点的右指针
+        if(left == null){
+        	root.right = right;
+            return root;
+        }
+        //如果左子树生成链表不为空，那么用while循环获取最后一个节点，并且它的右指针要指向右子树生成的链表的头节点
+        root.left = left;
+        TreeNode lastLeft = left;
+        while(lastLeft != null && lastLeft.right != null){
+        	lastLeft = lastLeft.right;
+        }
+        lastLeft.right = right;
+        
+        return root;
+    }
+
+}
+
+```
 
 
 
+至此，我们已经做完了这道题了，希望大家最后能好好理解我们所谓的分而治之的思想和二叉树中对左右子树递归的处理。大部分的二叉树算法题也就是围绕着这个思想为中心，只要从宏观上能把对左右子树处理的逻辑想清楚，那么就不难解决了。
+
+### 1.3 安卓开发中遇到的树形结构？
+
+那么对于安卓开发中，我们会不会遇到类似的问题呢？或者说安卓开发中会遇到树形结构的算法么？
+
+答案是肯定有！
+
+
+我们都知道在安卓系统里面，每个```ViewGroup```里面又会包含多个或者零个```View```,每一个```View``` 或者 ```ViewGroup``` 都有一个整型的Id，那么每次我们在使用```ViewGroup```的```findViewById(int id)```的时候，我们是以什么方式来查找并返回在当前ViewGroup下面，我们要查找的View呢？
+
+这个也是我非常喜欢对来我司应聘的求职者的问题，不过很遗憾，目前为止能完完整整写出来的就一个。。。。(再次可见东南亚开发者的水平，不忍吐槽)
+
+![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBFdfkIHlIavSVwduGlgDUrgRy_nvr1CQ1FS-uXslERqc0ikSFzA)
+
+
+那么题目来了
+
+请完成以下方法
+
+```java
+
+//返回一个在vg下面的一个View，id为方法的第二个参数
+public static View find(ViewGroup vg, int id){
+
+
+}
+
+```
+
+可以使用的方法有:
+
+* ``` View -> getId() ``` 返回一个int 的 id
+* ``` ViewGroup -> getChildCount() ``` 返回一个int的孩子数量
+* ``` ViewGroup -> getChildAt(int index) ``` 返回一个孩子，返回值为View。
+
+
+
+
+这个题目就可以说非常经典了，以往的树形结构的题目，我们都是做一个二叉树的处理，除了左就是右，但是这里我们每个ViewGroup都可能有多个孩子，每个孩子既可能是ViewGroup，也可能只是View(ViewGroup是View的子类，这里是一个知识点！)
+
+我这里就不做过多的解释了，直接贴代码，而且安卓系统本身也是用这种方式进行View的查找的。
+
+```java
+
+//返回一个在vg下面的一个View，id为方法的第二个参数
+public static View find(ViewGroup vg, int id){
+	if(vg == null) return null;
+    int size = vg.getChildCount();
+    //循环遍历所有孩子
+    for(int i = 0 ; i< size ;i++){
+    	View v = vg.getChildAt(i);
+        //如果当前孩子的id相同，那么返回
+        if(v.getId == id) return v;
+        //如果当前孩子id不同，但是是一个ViewGroup，那么我们递归往下找
+        if(v instance of ViewGroup){
+        	//递归
+        	View temp = find((ViewGroup)v,id);
+            //如果找到了，就返回temp，如果没有找到，继续当前的for循环
+            if(temp != null){
+            	return temp;
+            }
+        }
+    }
+    //到最后还没用找到，代表该ViewGroup vg 并不包含一个有该id的孩子，返回空
+    return null;
+}
+
+```
+
+
+
+### 2.二叉树的层序处理(广度优先)
+
+
+![](http://omu7tit09.bkt.clouddn.com/15006053431729.jpg)
+
+
+说到广度优先，大部分同学可能会想到图，不过毕竟树结构本身就是一种特殊的图。所以一般说树，尤其是二叉树的广度优先我们指的一般是层序遍历。
+
+比如说树
+
+![](https://github.com/richardissuperman/WHUT_CS_CLASS_09/blob/master/%E9%92%9F%E5%BA%86-%E9%AB%98%E9%98%B6%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/btree/Screen%20Shot%202017-12-29%20at%205.53.29%20PM.png?raw=true)
+
+层序打印的结果就是```A->B->C->D->D->E->F->G```
+
+
+对于层序遍历的相关算法，真理只有一个！
+
+![](http://p3.ifengimg.com/auto/wemedia/2016/0725/c5d73c52661d47d3a9590c94fff5d69f_q70.jpeg)
+
+**就是用```队列(Queue)```！**
+
+
+
+道理很简单，每次遍历当前节点的时候，把该节点从队列拿出来，并且把它的子节点全部加入到队列中。over~
+
+上一个简单的打印代码
+
+```java
+public void printTree(TreeNode root){
+	if(root == null){
+    	return;
+    }
+	Queue queue = new LinkedList();
+    queue.add(root);
+    while(!queue.isEmpty()){
+    	TreeNode current = queue.poll();
+        System.out.println(current.toString());
+        if(current.left != null){
+        	queue.add(current.left);
+        }
+        if(current.right != null){
+        	queue.add(current.right);
+        }
+    }
+
+}
+
+```
+
+这段代码很简单，利用队列先进先出的性质，我们可以一层层的打印二叉树的节点们。
+
+
+所以对于二叉树的层序遍历来说，一般都会使用队列，这都是套路。因此，二叉树的层序遍历相对来说比较简单，大家下次见到二叉树的层序遍历相关的面试题，先大胆的和面试官说出你打算使用队列，肯定没错！
+
+![](http://5b0988e595225.cdn.sohucs.com/images/20170913/639d7f3aa08a462f98ea5909a5cfc618.jpg)
+
+
+
+
+最后对于层序遍历来说我们再来一个比较具有代表性的题目！
+
+
+
+### 2.1 链接二叉树的Next节点
+
+
+这个题目要求大家在拥有一个二叉树节点的左右节点指针之余，还要帮它找到它的next指针指向的节点。
+
+大概是这样：
+
+![](https://github.com/richardissuperman/WHUT_CS_CLASS_09/blob/master/%E9%92%9F%E5%BA%86-%E9%AB%98%E9%98%B6%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/btree/Screen%20Shot%202017-12-29%20at%205.53.29%20PM.png?raw=true)
+
+在上面这个图中，红色的箭头代表next指针的指向
+
+![](https://github.com/richardissuperman/WHUT_CS_CLASS_09/blob/master/%E9%92%9F%E5%BA%86-%E9%AB%98%E9%98%B6%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/btree/Screen%20Shot%202017-12-29%20at%205.53.29%20PM%20copy.png?raw=true)
+
+**逻辑很简单，每一个的节点的next指向同一层中的下一个节点，不过如果该节点是当前层的最后一个节点的话，不设置next，或者说next为空。**
+
+
+其实这个题目就是典型的层序遍历，使用队列就可以轻松解决，每次poll出来一个节点，判断是不是当前层的最后一个，如果不是，把其next设置成queue中的下一个节点就ok了。至于怎么判断当前节点是哪一层呢？我们有个小技巧，使用当前queue的size做for循环，且看代码
+
+
+```java
+
+public void nextSibiling(TreeNode node){
+
+	if(node == null){
+    	return;
+    }
+	
+    Queue queue = new LinkedList();
+    queue.add(node);
+    //这个level没有实际用处，但是可以告诉大家怎么判断当前node是第几层。
+    int level = 0;
+    while(!queue.isEmpty()){
+    	int size = queue.size();
+        //用这个for循环，可以保证for循环里面对queue不管加多少个子节点，我只处理当前层里面的节点
+        for(int i = 0;i<size;i++){
+        		//把当前第一个节点拿出来
+            	TreeNode current = queue.poll();
+                //把子节点加到queue里面
+                if(current.left != null){
+                	queue.add(current.left);
+                }
+                if(current.right != null){
+                    queue.add(current.right);
+                }
+                
+        		if(i != size -1){
+               
+                	//peek只是获取当前队列中第一个节点，但是并不把它从队列中拿出来
+                	current.next = queue.peek();
+                
+                }
+            }
+        }
+        
+        level++;
+    }
+}
+
+```
+
+
+
+>二叉树的知识点我就大概讲这些，下次的文章我会接着详细的讲深度优先和广度优先的算法。深度优先是一个非常非常宽泛而且难以完全掌握的知识点，我会用详细的篇幅来覆盖所有的深度优先的基本题型，包括对树，图的深度优先搜索，集合的回朔等等。
+
+### 题目链接
+
+ * [铺平二叉树](https://leetcode.com/problems/flatten-binary-tree-to-linked-list/description/) 
+ * [翻转二叉树](https://leetcode.com/problems/invert-binary-tree/) 
 
 
 
